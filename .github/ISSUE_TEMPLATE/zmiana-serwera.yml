@@ -1,0 +1,25 @@
+name: Zmień adres serwera
+description: Zmień adresy wpisu. Działa tylko z konta, które zgłosiło serwer.
+title: "Zmiana serwera"
+labels: ["zmiana-serwera"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Nowy adres musi zwracać manifest z polem `"dnsClaim": "github:TWOJ-LOGIN"`.
+  - type: input
+    id: nazwa
+    attributes:
+      label: Nazwa w rejestrze
+    validations:
+      required: true
+  - type: input
+    id: onion
+    attributes:
+      label: Adres .onion
+      description: Docelowy adres. Puste pole usuwa adres .onion z wpisu.
+  - type: input
+    id: https
+    attributes:
+      label: Adres HTTPS
+      description: Docelowy adres. Puste pole usuwa adres HTTPS z wpisu.

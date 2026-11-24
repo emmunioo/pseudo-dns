@@ -1,0 +1,35 @@
+name: Dodaj serwer
+description: Zgłoś serwer społeczności do rejestru nazw lewicowYT.
+title: "Nowy serwer"
+labels: ["nowy-serwer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Przed wysłaniem dodaj do swojego `manifest.json` pole potwierdzające, że kontrolujesz serwer:
+        `"dnsClaim": "github:TWOJ-LOGIN"`. Po przyjęciu możesz je usunąć.
+  - type: input
+    id: nazwa
+    attributes:
+      label: Nazwa w rejestrze
+      description: 3–40 znaków, małe litery a-z, cyfry i pojedyncze myślniki.
+      placeholder: moj-serwer
+    validations:
+      required: true
+  - type: input
+    id: onion
+    attributes:
+      label: Adres .onion
+      description: Adres Tor v3. Podaj ten adres, adres HTTPS albo oba.
+  - type: input
+    id: https
+    attributes:
+      label: Adres HTTPS
+      description: Publiczna domena. Bez portu przyjmowany jest port 2137.
+  - type: checkboxes
+    id: oswiadczenie
+    attributes:
+      label: Oświadczenie
+      options:
+        - label: Prowadzę ten serwer i mam prawo zgłosić go do rejestru.
+          required: true

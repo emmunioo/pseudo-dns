@@ -1,0 +1,11 @@
+name: Usuń serwer
+description: Usuń wpis z rejestru. Działa tylko z konta, które zgłosiło serwer.
+title: "Usunięcie serwera"
+labels: ["usuniecie-serwera"]
+body:
+  - type: input
+    id: nazwa
+    attributes:
+      label: Nazwa w rejestrze
+    validations:
+      required: true
