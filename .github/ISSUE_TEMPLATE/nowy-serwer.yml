@@ -12,8 +12,8 @@ body:
     id: nazwa
     attributes:
       label: Nazwa w rejestrze
-      description: 3–40 znaków, małe litery a-z, cyfry i pojedyncze myślniki.
-      placeholder: moj-serwer
+      description: Pseudodomena z końcówką .lewyt, np. moj-serwer.lewyt (końcówkę można pominąć). Przed kropką 3–40 znaków — małe litery a-z, cyfry i pojedyncze myślniki.
+      placeholder: moj-serwer.lewyt
     validations:
       required: true
   - type: input

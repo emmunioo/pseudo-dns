@@ -1,6 +1,6 @@
 # Rejestr nazw serwerów lewicowYT
 
-Rejestr zamienia krótką nazwę serwera społeczności (np. `lewica-krakow`) na jego adres `.onion` lub HTTPS. Aplikacja lewicowYT pobiera stąd podpisane pliki przez sieć Tor, więc nie trzeba przepisywać długich adresów.
+Rejestr zamienia pseudodomenę serwera społeczności z końcówką `.lewyt` (np. `lewica-krakow.lewyt`) na jego adres `.onion` lub HTTPS. Aplikacja lewicowYT pobiera stąd podpisane pliki przez sieć Tor, więc nie trzeba przepisywać długich adresów.
 
 ## Dodanie serwera
 
@@ -15,7 +15,7 @@ Zmianę adresu i usunięcie wpisu zgłasza się tak samo, odpowiednim formularze
 
 ## Zasady
 
-- Nazwa: 3–40 znaków, małe litery `a–z`, cyfry i pojedyncze myślniki. Nazwy łudząco podobne do istniejących (np. `0` zamiast `o`) oraz nazwy zastrzeżone nie są przyjmowane.
+- Nazwa to pseudodomena `<nazwa>.lewyt`. Końcówkę `.lewyt` można w formularzu pominąć — zostanie dopisana. Część przed kropką: 3–40 znaków, małe litery `a–z`, cyfry i pojedyncze myślniki. Nazwy łudząco podobne do istniejących (np. `0` zamiast `o`) oraz nazwy zastrzeżone nie są przyjmowane.
 - Adres `.onion` (Tor v3) lub publiczna domena HTTPS. Domyślny port to 2137.
 - Jeden adres może należeć tylko do jednego wpisu. Jedno konto może mieć najwyżej 3 wpisy.
 - Konto GitHub musi istnieć od co najmniej 30 dni.
