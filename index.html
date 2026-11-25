@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self' https://raw.githubusercontent.com; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Rejestracja .lewyt</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --line:#30363d; --text:#e6edf3; --muted:#8b949e; --accent:#e53935; --ok:#3fb950; --warn:#d29922; --bad:#ff7b72; }
+  @media (prefers-color-scheme: light) { :root { --bg:#f6f8fa; --card:#fff; --line:#d0d7de; --text:#1f2328; --muted:#59636e; --ok:#1a7f37; --warn:#9a6700; --bad:#cf222e; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:640px; margin:0 auto; padding:32px 16px 48px; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  .lead { color:var(--muted); margin:0 0 24px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px; margin-bottom:16px; }
+  label { display:block; font-weight:600; margin:0 0 6px; }
+  .hint { color:var(--muted); font-size:14px; margin:6px 0 0; }
+  .field { margin-bottom:18px; }
+  .name { display:flex; align-items:stretch; border:1px solid var(--line); border-radius:9px; overflow:hidden; background:var(--bg); }
+  .name input { border:0; border-radius:0; flex:1; min-width:0; }
+  .name span { padding:11px 12px; color:var(--muted); border-left:1px solid var(--line); font-family:ui-monospace,Consolas,monospace; }
+  input { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:9px; background:var(--bg); color:var(--text); font:15px ui-monospace,Consolas,monospace; }
+  input:focus { outline:2px solid var(--accent); outline-offset:-1px; }
+  .status { margin-top:8px; font-size:14px; min-height:21px; overflow-wrap:anywhere; }
+  .ok { color:var(--ok); } .warn { color:var(--warn); } .bad { color:var(--bad); }
+  ol { padding-left:20px; margin:8px 0 0; } li { margin-bottom:8px; }
+  code { font-family:ui-monospace,Consolas,monospace; font-size:14px; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; word-break:break-all; }
+  button { width:100%; padding:13px; border:0; border-radius:9px; background:var(--accent); color:#fff; font-weight:600; font-size:16px; cursor:pointer; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  .check { display:flex; gap:10px; align-items:flex-start; margin:4px 0 18px; } .check input { width:auto; margin-top:4px; }
+  footer { color:var(--muted); font-size:13px; text-align:center; margin-top:24px; }
+  a { color:#58a6ff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Rejestracja pseudodomeny .lewyt</h1>
+  <p class="lead">Nadaj swojemu serwerowi społeczności lewicowYT krótką nazwę, np. <code>moj-serwer.lewyt</code>, zamiast długiego adresu .onion. Rejestracja jest darmowa.</p>
+
+  <div class="card">
+    <div class="field">
+      <label for="nazwa">Nazwa</label>
+      <div class="name"><input id="nazwa" autocomplete="off" spellcheck="false" placeholder="moj-serwer" maxlength="46" aria-describedby="nazwa-status"><span>.lewyt</span></div>
+      <div class="status" id="nazwa-status" aria-live="polite"></div>
+    </div>
+    <div class="field">
+      <label for="onion">Adres .onion</label>
+      <input id="onion" autocomplete="off" spellcheck="false" placeholder="abc…xyz.onion">
+      <div class="status" id="onion-status" aria-live="polite"></div>
+    </div>
+    <div class="field">
+      <label for="https">Adres HTTPS <span class="hint">(opcjonalnie)</span></label>
+      <input id="https" autocomplete="off" spellcheck="false" placeholder="serwer.przyklad.pl">
+      <div class="status" id="https-status" aria-live="polite"></div>
+      <p class="hint">Podaj adres .onion, HTTPS albo oba. Bez portu przyjmowany jest port 2137.</p>
+    </div>
+    <div class="field">
+      <label for="login">Twój login GitHub</label>
+      <input id="login" autocomplete="username" spellcheck="false" placeholder="twoj-login" maxlength="39">
+      <p class="hint">Potrzebny tylko do pokazania pola, które musisz dodać do manifestu. Konto potwierdza GitHub przy wysyłaniu.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <strong>Przed wysłaniem</strong>
+    <ol>
+      <li>Dodaj do <code>manifest.json</code> swojego serwera pole <code id="claim">"dnsClaim": "github:TWOJ-LOGIN"</code> — tak automat sprawdza, że serwer należy do Ciebie. Po rejestracji możesz je usunąć.</li>
+      <li>Kliknij przycisk poniżej. GitHub poprosi o zalogowanie i pokaże wypełnione zgłoszenie — zaznacz oświadczenie i wyślij.</li>
+      <li>Automat sprawdzi serwer przez sieć Tor i w ciągu kilkunastu minut odpowie w zgłoszeniu.</li>
+    </ol>
+  </div>
+
+  <label class="check"><input type="checkbox" id="mam-claim"> <span>Dodałem pole <code>dnsClaim</code> do manifestu mojego serwera.</span></label>
+  <button id="wyslij" disabled>Zarejestruj przez GitHub</button>
+  <p class="hint" id="powod" aria-live="polite"></p>
+
+  <footer>Rejestr: <a href="https://github.com/emmunioo/pseudo-dns" rel="noopener">github.com/emmunioo/pseudo-dns</a> · Wynik sprawdzenia na tej stronie jest wstępny — ostatecznie decyduje automat rejestru.</footer>
+</main>
+<script>
+'use strict';
+const REPO = 'emmunioo/pseudo-dns';
+const SUFIKS = '.lewyt';
+// Reguły jak w automacie rejestru (src/nazwy.js, src/dostepnosc.js).
+const NAZWA_RE = /^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$/;
+const ZASTRZEZONE = ['admin','administrator','root','system','oficjalny','official','wsparcie','support','pomoc','help','domyslny','default',
+  'glowny','primary','serwer','server','rejestr','registry','dns','localhost','tor','onion','github','google','youtube','lewyt'];
+const MARKI = ['lewicowyt'];
+const PORTY = new Set([80, 443, 2137, 8443]);
+const LOGIN_RE = /^[A-Za-z0-9](?:-?[A-Za-z0-9]){0,38}$/;
+
+const szkielet = (n) => String(n).toLowerCase().replace(/\.lewyt$/, '').replace(/-/g, '').replace(/rn/g, 'm').replace(/vv/g, 'w')
+  .replace(/[01i]/g, (z) => (z === '0' ? 'o' : 'l')).replace(/3/g, 'e').replace(/4/g, 'a').replace(/5/g, 's').replace(/7/g, 't').replace(/8/g, 'b').replace(/9/g, 'g');
+const ZASTRZ_SZK = new Set(ZASTRZEZONE.map(szkielet));
+const MARKI_SZK = MARKI.map(szkielet);
+
+const $ = (id) => document.getElementById(id);
+let rejestr = null; // { servers, quarantine }
+const stan = { nazwa: false, adres: false };
+
+function pokaz(el, klasa, tekst) { el.className = 'status ' + klasa; el.textContent = tekst; }
+
+async function wczytajRejestr() {
+  for (const url of ['podglad/rejestr.json', `https://raw.githubusercontent.com/${REPO}/main/podglad/rejestr.json`]) {
+    try {
+      const r = await fetch(url, { cache: 'no-store', credentials: 'omit' });
+      if (r.ok) { const j = await r.json(); if (Array.isArray(j.servers)) return { servers: j.servers, quarantine: j.quarantine || [] }; }
+    } catch { /* kolejne źródło */ }
+  }
+  return null;
+}
+
+function etykieta() {
+  const t = $('nazwa').value.trim().toLowerCase();
+  return t.endsWith(SUFIKS) ? t.slice(0, -SUFIKS.length) : t;
+}
+
+function sprawdzNazwe() {
+  const el = $('nazwa-status');
+  const e = etykieta();
+  stan.nazwa = false;
+  if (!e) { el.textContent = ''; return; }
+  if (e.includes('.') || !NAZWA_RE.test(e) || e.includes('--')) return pokaz(el, 'bad', 'Nazwa: 3–40 znaków, małe litery a-z, cyfry i pojedyncze myślniki (nie na początku ani końcu).');
+  const pelna = e + SUFIKS;
+  const s = szkielet(e);
+  if (rejestr) {
+    if (rejestr.servers.some((w) => w.name === pelna)) return pokaz(el, 'bad', `${pelna} jest już zajęta.`);
+    const podobna = rejestr.servers.find((w) => szkielet(w.name) === s);
+    if (podobna) return pokaz(el, 'bad', `${pelna} jest łudząco podobna do zarejestrowanej ${podobna.name}.`);
+    const karencja = rejestr.quarantine.find((q) => szkielet(q.name) === s && q.until > Date.now());
+    if (karencja) return pokaz(el, 'warn', `${pelna} jest w okresie karencji do ${new Date(karencja.until).toLocaleDateString('pl-PL')} — może ją odzyskać tylko poprzedni właściciel.`);
+  }
+  if (ZASTRZ_SZK.has(s) || MARKI_SZK.some((m) => s.includes(m))) return pokaz(el, 'bad', `${pelna} jest zastrzeżona.`);
+  stan.nazwa = true;
+  pokaz(el, 'ok', rejestr ? `${pelna} jest dostępna.` : `${pelna} ma poprawny format (nie udało się pobrać rejestru, dostępność sprawdzi automat).`);
+}
+
+function rozbierz(surowy, schemat) {
+  const t = surowy.trim();
+  if (!t) return null;
+  if (t.length > 300 || /[\s\\%?#]/.test(t) || t.includes('..')) return false;
+  let u;
+  try { u = new URL(/^[a-z]+:\/\//i.test(t) ? t : `${schemat}://${t}`); } catch { return false; }
+  if (u.username || u.password) return false;
+  const port = u.port ? Number(u.port) : 2137;
+  return { schemat: u.protocol.slice(0, -1), host: u.hostname.toLowerCase(), port, ok: PORTY.has(port) };
+}
+
+function sprawdzAdresy() {
+  const o = rozbierz($('onion').value, 'http');
+  const h = rozbierz($('https').value, 'https');
+  if (o === null) $('onion-status').textContent = '';
+  else if (!o || o.schemat !== 'http' || !/^[a-z2-7]{56}\.onion$/.test(o.host) || !o.ok) pokaz($('onion-status'), 'bad', 'Wymagany adres Tor v3 (56 znaków + .onion), port 80, 443, 2137 lub 8443.');
+  else pokaz($('onion-status'), 'ok', `Adres: http://${o.host}:${o.port}`);
+  const hostOk = (x) => x.includes('.') && !/^[0-9.]+$/.test(x) && !/\.(local|lan|home|internal|onion|test|localhost)$/.test(x);
+  if (h === null) $('https-status').textContent = '';
+  else if (!h || h.schemat !== 'https' || !hostOk(h.host) || !h.ok) pokaz($('https-status'), 'bad', 'Wymagana publiczna domena HTTPS (bez adresu IP), port 80, 443, 2137 lub 8443.');
+  else pokaz($('https-status'), 'ok', `Adres: https://${h.host}:${h.port}`);
+  const onionOk = o && $('onion-status').classList.contains('ok');
+  const httpsOk = h && $('https-status').classList.contains('ok');
+  stan.adres = (onionOk || httpsOk) && !(o === false || (o && !onionOk)) && !(h === false || (h && !httpsOk));
+}
+
+function odswiez() {
+  sprawdzNazwe();
+  sprawdzAdresy();
+  const login = $('login').value.trim();
+  $('claim').textContent = `"dnsClaim": "github:${LOGIN_RE.test(login) ? login : 'TWOJ-LOGIN'}"`;
+  const powody = [];
+  if (!stan.nazwa) powody.push('poprawna i dostępna nazwa');
+  if (!stan.adres) powody.push('poprawny adres .onion lub HTTPS');
+  if (!$('mam-claim').checked) powody.push('potwierdzenie pola dnsClaim');
+  $('wyslij').disabled = powody.length > 0;
+  $('powod').textContent = powody.length ? `Brakuje: ${powody.join(', ')}.` : '';
+}
+
+$('wyslij').addEventListener('click', () => {
+  const p = new URLSearchParams({ template: 'nowy-serwer.yml', title: `Nowy serwer: ${etykieta()}${SUFIKS}`, nazwa: etykieta() + SUFIKS });
+  if ($('onion').value.trim()) p.set('onion', $('onion').value.trim());
+  if ($('https').value.trim()) p.set('https', $('https').value.trim());
+  window.open(`https://github.com/${REPO}/issues/new?${p}`, '_blank', 'noopener,noreferrer');
+});
+for (const id of ['nazwa', 'onion', 'https', 'login', 'mam-claim']) $(id).addEventListener('input', odswiez);
+wczytajRejestr().then((r) => { rejestr = r; odswiez(); });
+odswiez();
+</script>
+</body>
+</html>
