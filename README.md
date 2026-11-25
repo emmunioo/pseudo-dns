@@ -2,6 +2,16 @@
 
 Rejestr zamienia pseudodomenę serwera społeczności z końcówką `.lewyt` (np. `lewica-krakow.lewyt`) na jego adres `.onion` lub HTTPS. Aplikacja lewicowYT pobiera stąd podpisane pliki przez sieć Tor, więc nie trzeba przepisywać długich adresów.
 
+## Sprawdzenie dostępności
+
+Zanim zgłosisz serwer, otwórz zgłoszenie **[Sprawdź dostępność](../../issues/new/choose)**. Automat odpowie, czy nazwa jest:
+
+- **dostępna** — można ją zarejestrować,
+- **zajęta** — z datą rejestracji, ostatniej zmiany, statusem serwera i numerem konta właściciela (jak WHOIS),
+- **łudząco podobna** do już zarejestrowanej (np. `0` zamiast `o`, `rn` zamiast `m`),
+- **zastrzeżona** albo **zablokowana** przez administratora,
+- **w okresie karencji** — po usunięciu wpisu nazwa przez 30 dni może wrócić tylko do poprzedniego właściciela.
+
 ## Dodanie serwera
 
 1. Do `manifest.json` swojego serwera dodaj pole potwierdzające, że go kontrolujesz:
@@ -20,6 +30,7 @@ Zmianę adresu i usunięcie wpisu zgłasza się tak samo, odpowiednim formularze
 - Jeden adres może należeć tylko do jednego wpisu. Jedno konto może mieć najwyżej 3 wpisy.
 - Konto GitHub musi istnieć od co najmniej 30 dni.
 - Serwer, który nie odpowiada przez 3 dni, dostaje ostrzeżenie w swoim zgłoszeniu. Po 14 dniach wpis jest usuwany.
+- Usunięta nazwa (na prośbę właściciela albo z powodu niedziałającego serwera) przechodzi w 30-dniowy okres karencji, widoczny w `podglad/rejestr.json`. W tym czasie może ją odzyskać tylko poprzedni właściciel.
 
 ## Pliki
 

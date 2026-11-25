@@ -1,0 +1,18 @@
+name: Sprawdź dostępność
+description: Sprawdź, czy pseudodomenę .lewyt można zarejestrować (nic nie zostanie zarejestrowane).
+title: "Dostępność"
+labels: ["sprawdz-dostepnosc"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Automat odpowie w ciągu kilkunastu minut: czy nazwa jest dostępna, zajęta (z datą rejestracji i statusem),
+        łudząco podobna do innej, zastrzeżona albo w okresie karencji po usunięciu. Zgłoszenie zostanie potem zamknięte.
+  - type: input
+    id: nazwa
+    attributes:
+      label: Nazwa w rejestrze
+      description: Pseudodomena, np. moj-serwer.lewyt (końcówkę można pominąć).
+      placeholder: moj-serwer.lewyt
+    validations:
+      required: true
